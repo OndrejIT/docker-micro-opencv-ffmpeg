@@ -8,10 +8,8 @@
 	```
 	Cython==0.25.2
 	numpy==1.12.1
-	Pillow==4.1.0
+	Pillow==4.1.1
 	av==0.3.3
-	requests==2.13.0
-	python-magic==0.4.13
 	```
 
 > Download: docker pull ondrejit/micro-opencv-ffmpeg:latest

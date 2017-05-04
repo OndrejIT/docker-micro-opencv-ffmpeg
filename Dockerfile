@@ -9,7 +9,6 @@ RUN \
 	apk update && \
 	apk add \
 	tzdata \
-	libmagic \
 	libass \
 	libstdc++ \
 	libpng \
@@ -82,9 +81,7 @@ RUN \
 	Cython==0.25.2 \
 	numpy==1.12.1 \
 	Pillow==4.1.0 \
-	av==0.3.3 \
-	requests==2.13.0 \
-	python-magic==0.4.13 && \
+	av==0.3.3 && \
 
 	# OpenCV
 	export OPENCV_VERSION=3.2.0 \
