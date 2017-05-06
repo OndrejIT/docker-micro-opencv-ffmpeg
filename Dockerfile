@@ -39,8 +39,6 @@ RUN \
 	xvidcore-dev \
 	libass-dev \
 	openssl-dev \
-	python3-dev \
-	ffmpeg-dev \
 	musl-dev \
 	make \
 	cmake \
@@ -56,7 +54,7 @@ RUN \
 	git \
 	curl && \
 
-	export SRC=/usr/local \
+	export SRC=/usr \
 	export FFMPEG_VERSION=3.3 \
 
 	DIR=$(mktemp -d) && cd ${DIR} && \

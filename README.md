@@ -14,4 +14,4 @@
 
 > Download: docker pull ondrejit/micro-opencv-ffmpeg:latest
 
-> https://hub.docker.com/r/micro-opencv-ffmpeg/
+> https://hub.docker.com/r/ondrejit/micro-opencv-ffmpeg/
