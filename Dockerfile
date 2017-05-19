@@ -55,7 +55,7 @@ RUN \
 	curl && \
 
 	export SRC=/usr \
-	export FFMPEG_VERSION=3.3 \
+	export FFMPEG_VERSION=3.3.1 \
 
 	DIR=$(mktemp -d) && cd ${DIR} && \
 	curl -Os http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz && \
@@ -77,7 +77,7 @@ RUN \
 	ln -s /usr/include/locale.h /usr/include/xlocale.h && \
 	pip install --no-cache-dir \
 	Cython==0.25.2 \
-	numpy==1.12.1 \
+	numpy==1.13.0rc2 \
 	Pillow==4.1.0 \
 	av==0.3.3 && \
 
