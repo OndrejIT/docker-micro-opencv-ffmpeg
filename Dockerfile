@@ -55,7 +55,7 @@ RUN \
 	curl && \
 
 	export SRC=/usr \
-	export FFMPEG_VERSION=3.3.1 \
+	export FFMPEG_VERSION=3.3.2 \
 
 	DIR=$(mktemp -d) && cd ${DIR} && \
 	curl -Os http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz && \
