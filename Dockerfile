@@ -78,7 +78,7 @@ RUN \
 	pip install --no-cache-dir \
 	Cython==0.25.2 \
 	numpy==1.13.0rc2 \
-	Pillow==4.1.0 \
+	Pillow==4.2.0 \
 	av==0.3.3 && \
 
 	# OpenCV
