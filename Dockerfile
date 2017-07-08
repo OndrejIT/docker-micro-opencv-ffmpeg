@@ -77,8 +77,8 @@ RUN \
 	ln -s /usr/include/locale.h /usr/include/xlocale.h && \
 	pip install --no-cache-dir \
 	Cython==0.25.2 \
-	numpy==1.13.0rc2 \
-	Pillow==4.2.0 \
+	numpy==1.13.1 \
+	Pillow==4.2.1 \
 	av==0.3.3 && \
 
 	# OpenCV
