@@ -76,7 +76,7 @@ RUN \
 	# Fix numpy
 	ln -s /usr/include/locale.h /usr/include/xlocale.h && \
 	pip install --no-cache-dir \
-	Cython==0.25.2 \
+	Cython==0.26 \
 	numpy==1.13.1 \
 	Pillow==4.2.1 \
 	av==0.3.3 && \
