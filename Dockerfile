@@ -82,7 +82,7 @@ RUN \
 	av==0.3.3 && \
 
 	# OpenCV
-	export OPENCV_VERSION=3.2.0 \
+	export OPENCV_VERSION=3.3.0 \
 
 	export CC=/usr/bin/clang \
 	export CXX=/usr/bin/clang++ && \

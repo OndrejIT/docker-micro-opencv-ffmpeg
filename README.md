@@ -3,7 +3,7 @@
 
 ====================
   - FFmpeg: 3.3.3
-  - OpenCV: 3.2.0
+  - OpenCV: 3.3.0
   - Python 3.6 included:
 	```
 	Cython==0.26
