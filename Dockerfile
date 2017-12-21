@@ -1,5 +1,3 @@
-# vim:set ft=dockerfile:
-
 FROM docker.io/python:3-alpine
 MAINTAINER Ondrej Barta <ondrej@ondrej.it>
 
@@ -55,7 +53,7 @@ RUN \
 	curl && \
 
 	export SRC=/usr \
-	export FFMPEG_VERSION=3.3.3 \
+	export FFMPEG_VERSION=3.4.1 \
 
 	DIR=$(mktemp -d) && cd ${DIR} && \
 	curl -Os http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz && \
@@ -73,16 +71,14 @@ RUN \
 	cd /tmp && \
 	rm -rf ${DIR} && \
 
-	# Fix numpy
-	ln -s /usr/include/locale.h /usr/include/xlocale.h && \
 	pip install --no-cache-dir \
-	Cython==0.26 \
-	numpy==1.13.1 \
-	Pillow==4.2.1 \
+	Cython==0.27.3 \
+	numpy==1.14.0rc1 \
+	Pillow==4.3.0 \
 	av==0.3.3 && \
 
 	# OpenCV
-	export OPENCV_VERSION=3.3.0 \
+	export OPENCV_VERSION=3.3.1 \
 
 	export CC=/usr/bin/clang \
 	export CXX=/usr/bin/clang++ && \
