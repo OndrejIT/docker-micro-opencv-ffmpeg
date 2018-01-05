@@ -19,7 +19,8 @@ RUN \
 	opus \
 	lame \
 	fdk-aac \
-	freetype && \
+	freetype \
+	coreutils && \
 
 	# Install build tools
 	apk add --virtual build-deps \
@@ -64,7 +65,7 @@ RUN \
 	--enable-postproc --enable-nonfree --enable-avresample --enable-libfdk-aac --disable-debug --enable-small --enable-openssl \
 	--enable-libx265 --enable-libopus --enable-libvorbis --enable-libvpx --enable-libfreetype --enable-libass \
 	--enable-shared --enable-pic && \
-	make -j4 && \
+	make -j8 && \
 	make install && \
 	make distclean && \
 	hash -r && \
@@ -74,11 +75,11 @@ RUN \
 	pip install --no-cache-dir \
 	Cython==0.27.3 \
 	numpy==1.14.0rc1 \
-	Pillow==4.3.0 \
+	Pillow==5.0.0 \
 	av==0.3.3 && \
 
 	# OpenCV
-	export OPENCV_VERSION=3.3.1 \
+	export OPENCV_VERSION=3.4.0 \
 
 	export CC=/usr/bin/clang \
 	export CXX=/usr/bin/clang++ && \
@@ -94,7 +95,7 @@ RUN \
 	-D INSTALL_PYTHON_EXAMPLES=OFF \
 	-D CMAKE_INSTALL_PREFIX=/usr/local \
 	-D BUILD_EXAMPLES=OFF .. && \
-	make -j4 && \
+	make -j8 && \
 	make install && \
 	cp ${DIR}/opencv-${OPENCV_VERSION}/build/lib/python3/cv2.cpython-36m-x86_64-linux-gnu.so /usr/local/lib/python3.6/cv2.so && \
 	cd /tmp && \
@@ -103,4 +104,3 @@ RUN \
 	# Cleaning up
 	apk del build-deps && \
 	rm -rf /var/cache/apk/*
-

@@ -3,12 +3,12 @@
 
 ====================
   - FFmpeg: 3.4.1
-  - OpenCV: 3.3.1
+  - OpenCV: 3.4.0
   - Python 3.6 included:
 	```
 	Cython==0.27.3
 	numpy==1.14.0rc1
-	Pillow==4.3.0
+	Pillow==5.0.0
 	av==0.3.3
 	```
 
