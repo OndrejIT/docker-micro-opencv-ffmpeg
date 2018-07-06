@@ -1,4 +1,4 @@
-FROM docker.io/python:3-alpine
+FROM docker.io/python:3.6.6-alpine
 MAINTAINER Ondrej Barta <ondrej@ondrej.it>
 
 RUN \
@@ -19,6 +19,7 @@ RUN \
 	opus \
 	lame \
 	fdk-aac \
+	jasper-libs \
 	freetype && \
 
 	# Install build tools
@@ -55,7 +56,7 @@ RUN \
 
 	# FFmpeg
 	export SRC=/usr \
-	export FFMPEG_VERSION=3.4.1 \
+	export FFMPEG_VERSION=4.0.1 \
 
 	DIR=$(mktemp -d) && cd ${DIR} && \
 	curl -Os http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz && \
@@ -74,14 +75,10 @@ RUN \
 	rm -rf ${DIR} && \
 
 	# PIP
-	pip install --no-cache-dir \
-	Cython==0.27.3 \
-	numpy==1.14.0 \
-	Pillow==5.0.0 \
-	av==0.3.3 && \
+	pip install -r /opt/mcp/requirements.txt --no-cache-dir && \
 
 	# OpenCV
-	export OPENCV_VERSION=3.4.0 \
+	export OPENCV_VERSION=3.4.1 \
 	export CC=/usr/bin/clang \
 	export CXX=/usr/bin/clang++ \
 	export PYTHON_VERSION=`python -c 'import platform; print(".".join(platform.python_version_tuple()[:2]))'` && \
