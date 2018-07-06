@@ -19,7 +19,6 @@ RUN \
 	opus \
 	lame \
 	fdk-aac \
-	jasper-libs \
 	freetype && \
 
 	# Install build tools
