@@ -1,4 +1,4 @@
-FROM docker.io/python:3.6.6-alpine
+FROM docker.io/python:3.7-alpine
 MAINTAINER Ondrej Barta <ondrej@ondrej.it>
 
 RUN \
@@ -19,6 +19,7 @@ RUN \
 	opus \
 	lame \
 	fdk-aac \
+	jasper-libs \
 	freetype && \
 
 	# Install build tools
@@ -46,7 +47,6 @@ RUN \
 	build-base \
 	libjpeg-turbo-dev \
 	libpng-dev \
-	libjasper \
 	clang-dev \
 	clang \
 	linux-headers \
@@ -55,7 +55,7 @@ RUN \
 
 	# FFmpeg
 	export SRC=/usr \
-	export FFMPEG_VERSION=4.0.1 \
+	export FFMPEG_VERSION=4.1 \
 
 	DIR=$(mktemp -d) && cd ${DIR} && \
 	curl -Os http://ffmpeg.org/releases/ffmpeg-${FFMPEG_VERSION}.tar.gz && \
@@ -74,21 +74,31 @@ RUN \
 	rm -rf ${DIR} && \
 
 	# PIP
-	pip install -r /opt/mcp/requirements.txt --no-cache-dir && \
+	pip install --no-cache-dir \
+	Cython==0.29.4 \
+	numpy==1.16.1 \
+	Pillow==5.4.1 \
+	av==6.1.2 && \
 
-	# OpenCV
-	export OPENCV_VERSION=3.4.1 \
+	## OpenCV
+	export OPENCV_VERSION=3.4.5 \
+	export PYTHON_VERSION=`python -c 'import platform; print(".".join(platform.python_version_tuple()[:2]))'` \
 	export CC=/usr/bin/clang \
-	export CXX=/usr/bin/clang++ \
-	export PYTHON_VERSION=`python -c 'import platform; print(".".join(platform.python_version_tuple()[:2]))'` && \
+	export CXX=/usr/bin/clang++ && \
+	# Contrib
+	CONTRIB_DIR=$(mktemp -d) && cd ${CONTRIB_DIR} && \
+	curl -SL -O https://github.com/opencv/opencv_contrib/archive/${OPENCV_VERSION}.tar.gz && \
+	tar xzvf ${OPENCV_VERSION}.tar.gz && \
 
 	DIR=$(mktemp -d) && cd ${DIR} && \
-	curl -sSL -Os https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.tar.gz && \
+	curl -SL -O https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.tar.gz && \
 	tar xzvf ${OPENCV_VERSION}.tar.gz && \
 	cd opencv-${OPENCV_VERSION} && \
 	mkdir build && \
 	cd build && \
-	cmake -D CMAKE_BUILD_TYPE=RELEASE \
+	cmake \
+	    -D OPENCV_EXTRA_MODULES_PATH=${CONTRIB_DIR}/opencv_contrib-${OPENCV_VERSION}/modules \
+		-D CMAKE_BUILD_TYPE=RELEASE \
 		-D INSTALL_C_EXAMPLES=OFF \
 		-D INSTALL_PYTHON_EXAMPLES=OFF \
 		-D CMAKE_INSTALL_PREFIX=/usr/local \
